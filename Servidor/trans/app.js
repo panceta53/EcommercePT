@@ -34,7 +34,7 @@ class App {
         this.app.use(express_1.default.json());
     }
     settings() {
-        this.app.set('port', this.port || process.env.PORT || 5000);
+        this.app.set('port', this.port || process.env.PORT || 4200);
     }
     routes() {
         this.app.use(producto_1.default);
