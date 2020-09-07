@@ -1,0 +1,62 @@
+<div class="card" style="width: 36rem;">
+    <div class="card-body">
+      <h5 class="card-title">Carrito de compras</h5>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dato of this.datos">
+              <td>{{dato.nombre}}</td>
+              <td>{{dato.precio}}</td>
+              <td>
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <button type="button" (click)="menos(dato.id)" class="btn btn-primary">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                    </svg></button>
+                    <input [(ngModel)]="dato.cantidad" type="number" disabled="true" class="form-control input">
+                    <button type="button" (click)="mas(dato.id)" class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                    </svg></button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                {{dato.cantidad*dato.precio}}
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)="Eliminar(dato.id)">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>
+                Total
+              </th>
+              <th></th>
+              <th></th>
+              <th><label>{{valorTotal()}}</label></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="col-xl-12">
+          <button type="button" class="btn btn-success" [disabled]="this.datos.length == 0" (click)="comprar()">Comprar</button>
+        </div>
+    </div>
+  </div>
